@@ -1,3 +1,5 @@
+package Lista07;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class Time {
 
     public boolean escalarJogador(String nomeJogador, SituacaoEscalacao situacaoEscalacao) {
         Jogador jogador = encontrarJogador(nomeJogador);
+
         if (jogador == null || jogador.getSituacaoEscalacao() != null) {
             return false;
         }
@@ -25,6 +28,7 @@ public class Time {
         if (calcularQtdJogadores(situacaoEscalacao) >= situacaoEscalacao.getQtdMaxima()) {
             return false;
         }
+
 
         jogador.setSituacaoEscalacao(situacaoEscalacao);
         jogadoresEscalados.add(jogador);
@@ -52,14 +56,15 @@ public class Time {
 
     public void removerJogadorEscalacao(String nomeJogador) {
         Jogador jogador = encontrarJogador(nomeJogador);
-        if (jogador != null && jogador.getSituacaoEscalacao() != null) {
+
+         if (jogador != null && jogadoresEscalados.contains(jogador)) {
             jogadoresEscalados.remove(jogador);
             jogador.setSituacaoEscalacao(null);
         }
     }
 
     public List<Jogador> obterEscalacao() {
-        return jogadoresEscalados;
+        return new ArrayList<>(jogadoresEscalados);
     }
 
     public String getNome() {
@@ -69,6 +74,4 @@ public class Time {
     public String getNomeTecnico() {
         return nomeTecnico;
     }
-
-
 }
